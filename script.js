@@ -50,24 +50,6 @@ function drawBricks() {
 	}
 }
 
-function keyDownHandler(e) {
-	if(e.keyCode == 39) {
-		rightPressed = true;
-	}
-	else if(e.keyCode == 37) {
-		leftPressed = true;
-	}
-}
-
-function keyUpHandler(e) {
-	if(e.keyCode == 39) {
-		rightPressed = false;
-	}
-	else if(e.keyCode == 37) {
-		leftPressed = false;
-	}
-}
-
 function drawBall() {
 	ctx.beginPath();
 	ctx.arc(x, y, ballRadius, 0, Math.PI*2);
@@ -166,6 +148,27 @@ function mouseMoveHandler(e) {
 	var relativeX = e.clientX - canvas.offsetLeft;
 	if(relativeX > 0+paddleWidth/2 && relativeX < canvas.width-paddleWidth/2) {
 		paddleX = relativeX - paddleWidth/2;
+	}
+}
+
+document.addEventListener("keypress", keyDownHandler);
+
+function keyDownHandler(e) {
+	// "D" for right and "A" for left movement 
+	if(e.code == "KeyD") {
+
+		var relativeX = paddleX + 10;
+		if(relativeX < canvas.width - 100) {
+			paddleX = relativeX + 10;
+		}
+	}
+	
+	if(e.code == "KeyA") {
+
+		var relativeX = paddleX - 10;
+		if(relativeX > 0 ) {
+			paddleX = relativeX - 10;
+		}
 	}
 }
 
