@@ -1,26 +1,26 @@
-var canvas = document.getElementById('myCanvas');
-var ctx = canvas.getContext('2d');
+let canvas = document.getElementById('myCanvas');
+let ctx = canvas.getContext('2d');
 
-var x = canvas.width/2;
-var y = canvas.height - 30;
-var dx = 2;
-var dy = -2;
-var ballRadius = 25;
-var paddleHeight = 10;
-var paddleWidth = 100;
-var paddleX = (canvas.width-paddleWidth)/2;
-var rightPressed = false;
-var leftPressed = false;
-var brickRowCount = 5;
-var brickColumnCount = 8;
-var brickWidth = 100;
-var brickHeight = 10;
-var brickPadding = 7;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
-var score = 0;
-var lives = 3;
-var modeColor = 'row';
+let x = canvas.width/2;
+let y = canvas.height - 30;
+let dx = 2;
+let dy = -2;
+let ballRadius = 25;
+let paddleHeight = 10;
+let paddleWidth = 100;
+let paddleX = (canvas.width-paddleWidth)/2;
+let rightPressed = false;
+let leftPressed = false;
+let brickRowCount = 5;
+let brickColumnCount = 8;
+let brickWidth = 100;
+let brickHeight = 10;
+let brickPadding = 7;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 30;
+let score = 0;
+let lives = 3;
+let modeColor = 'row';
 
 
 let failure = document.querySelector('.failure');
@@ -28,17 +28,30 @@ let failureBtn = document.querySelector('#failureBtn');
 let success = document.querySelector('.success');
 let successBtn = document.querySelector('#successBtn');
 
+
+function reloadPage() {
+	document.location.reload();
+}
+
+function resetValues(element) {
+	ballRadius = 0;
+	lives = 0;
+	score = 0;
+	paddleWidth = 0;
+	element.style.top = "40%";
+}
+
 //reloads page OnClick
 failureBtn.addEventListener('click', () => {
-	document.location.reload();
+	reloadPage();
 });
 
 successBtn.addEventListener('click', () => {
-	document.location.reload();
+	reloadPage();
 });
 
 changeBrickColumnCountAndOffsetLeft()
-var bricks = [];
+let bricks = [];
 for (c=0; c<brickColumnCount; c++) {
 	bricks[c] = [];
 	for (r=0; r<brickRowCount; r++) {
@@ -62,8 +75,8 @@ function drawBricks() {
 	for(c=0; c<brickColumnCount; c++) {
 		for(r=0; r<brickRowCount; r++) {
 			if(bricks[c][r].status == 1) {
-				var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-				var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+				let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+				let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
 				bricks[c][r].x = brickX;
 				bricks[c][r].y = brickY;
 				ctx.beginPath();
@@ -95,19 +108,14 @@ function drawPaddle() {
 function collisionDetection() {
 	for(c=0; c<brickColumnCount; c++){
 		for(r=0; r<brickRowCount; r++){
-			var b = bricks[c][r];
+			let b = bricks[c][r];
 			if(b.status  == 1) {
 				if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
 					dy = -dy;
 					b.status = 0;
 					score++;
 					if(score == brickRowCount*brickColumnCount) {
-						ballRadius = 0;
-						lives = 0;
-						score = 0;
-						paddleWidth = 0;
-						success.style.top = "40%";
-						
+						resetValues(success);
 					}
 				}
 			}
@@ -144,11 +152,7 @@ function draw() {
 		} else {
 			lives--;
 			if(!lives) {
-				ballRadius = 0;
-				lives = 0;
-				score = 0;
-				paddleWidth = 0;
-				failure.style.top = "40%";
+				resetValues(failure);
 			} else {
 				x = canvas.width/2;
 				y = canvas.height-30;
@@ -178,7 +182,7 @@ function draw() {
 document.addEventListener("mousemove", mouseMoveHandler);
 
 function mouseMoveHandler(e) {
-	var relativeX = e.clientX - canvas.offsetLeft;
+	let relativeX = e.clientX - canvas.offsetLeft;
 	if(relativeX > 0+paddleWidth/2 && relativeX < canvas.width-paddleWidth/2) {
 		paddleX = relativeX - paddleWidth/2;
 	}
@@ -190,7 +194,7 @@ function keyDownHandler(e) {
 	// "D" for right and "A" for left movement 
 	if(e.code == "KeyD") {
 
-		var relativeX = paddleX + 10;
+		let relativeX = paddleX + 10;
 		if(relativeX < canvas.width - 100) {
 			paddleX = relativeX + 10;
 		}
@@ -198,7 +202,7 @@ function keyDownHandler(e) {
 	
 	if(e.code == "KeyA") {
 
-		var relativeX = paddleX - 10;
+		let relativeX = paddleX - 10;
 		if(relativeX > 0 ) {
 			paddleX = relativeX - 10;
 		}
