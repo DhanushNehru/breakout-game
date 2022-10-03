@@ -22,6 +22,7 @@ var score = 0;
 var lives = 3;
 var modeColor = 'row';
 
+changeBrickColumnCountAndOffsetLeft()
 var bricks = [];
 for (c=0; c<brickColumnCount; c++) {
 	bricks[c] = [];
@@ -33,6 +34,15 @@ for (c=0; c<brickColumnCount; c++) {
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 */
+function changeBrickColumnCountAndOffsetLeft(){
+	let lengthBriks = (brickColumnCount*(brickWidth+brickPadding))+brickOffsetLeft
+	while (lengthBriks >= canvas.width) {
+		brickColumnCount = brickColumnCount -1;
+		lengthBriks = (brickColumnCount*(brickWidth+brickPadding))+brickOffsetLeft
+	}
+	brickOffsetLeft = ( (canvas.width - lengthBriks) + brickOffsetLeft ) / 2
+}
+
 function drawBricks() {
 	for(c=0; c<brickColumnCount; c++) {
 		for(r=0; r<brickRowCount; r++) {
