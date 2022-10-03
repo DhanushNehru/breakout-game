@@ -3,8 +3,13 @@ var ctx = canvas.getContext('2d');
 
 var x = canvas.width/2;
 var y = canvas.height - 30;
-var dx = 2;
-var dy = -2;
+
+
+let speed = 2;
+
+var dx = speed;
+var dy = -speed;
+
 var ballRadius = 25;
 var paddleHeight = 10;
 var paddleWidth = 100;
@@ -19,8 +24,17 @@ var brickPadding = 7;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 var score = 0;
-var lives = 3;
+var lives = 10000;
 var modeColor = 'row';
+
+const speedSlider = document.querySelector("#speed-slider");
+
+speedSlider.addEventListener("input", () => {
+    speed = speedSlider.value;
+
+	dx = speed;
+	dy = -speed;
+})
 
 changeBrickColumnCountAndOffsetLeft()
 var bricks = [];
@@ -30,10 +44,12 @@ for (c=0; c<brickColumnCount; c++) {
 		bricks[c][r] = {x: 0, y:0, status: 1};
 	}
 }
+
 /*
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 */
+
 function changeBrickColumnCountAndOffsetLeft(){
 	let lengthBriks = (brickColumnCount*(brickWidth+brickPadding))+brickOffsetLeft
 	while (lengthBriks >= canvas.width) {
@@ -130,8 +146,10 @@ function draw() {
 			} else {
 				x = canvas.width/2;
 				y = canvas.height-30;
-				dx = 2;
-				dy = -2;
+				dx = speed;
+				dy = -speed; 
+
+				console.log(dx, dy)
 				paddleX = (canvas.width-paddleWidth)/2;
 			}
 		}
