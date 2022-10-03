@@ -22,6 +22,21 @@ var score = 0;
 var lives = 3;
 var modeColor = 'row';
 
+
+let failure = document.querySelector('.failure');
+let failureBtn = document.querySelector('#failureBtn');
+let success = document.querySelector('.success');
+let successBtn = document.querySelector('#successBtn');
+
+//reloads page OnClick
+failureBtn.addEventListener('click', () => {
+	document.location.reload();
+});
+
+successBtn.addEventListener('click', () => {
+	document.location.reload();
+});
+
 changeBrickColumnCountAndOffsetLeft()
 var bricks = [];
 for (c=0; c<brickColumnCount; c++) {
@@ -87,8 +102,12 @@ function collisionDetection() {
 					b.status = 0;
 					score++;
 					if(score == brickRowCount*brickColumnCount) {
-						alert("YOU WIN, CONGRADULATIONS!");
-						document.location.reload();
+						ballRadius = 0;
+						lives = 0;
+						score = 0;
+						paddleWidth = 0;
+						success.style.top = "40%";
+						
 					}
 				}
 			}
@@ -125,8 +144,11 @@ function draw() {
 		} else {
 			lives--;
 			if(!lives) {
-				alert("GAME OVER!");
-				document.location.reload();
+				ballRadius = 0;
+				lives = 0;
+				score = 0;
+				paddleWidth = 0;
+				failure.style.top = "40%";
 			} else {
 				x = canvas.width/2;
 				y = canvas.height-30;
