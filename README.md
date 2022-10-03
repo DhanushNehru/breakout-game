@@ -1,8 +1,11 @@
 # breakout-game
 A simple breakout game created using HTML, CSS and Javascript
 
-![image](https://user-images.githubusercontent.com/22955675/191938991-5d3d7123-a367-4914-9e2a-4d0a8de897db.png)
+![image](https://raw.githubusercontent.com/AnuragLodhi/breakout-game/main/README-files/gameplay.gif)
 
-The game would consist of 3 lives in order to clear out all the blocks.
+You only have 3 lives 💖💖💖
+Try and break all the blocks to win.
+
+Created with <img src="https://raw.githubusercontent.com/AnuragLodhi/breakout-game/main/README-files/techstack.png" height="50px">
 
 Feel free to contribute if you have any changes or improvements ✌️
