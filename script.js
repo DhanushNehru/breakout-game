@@ -20,6 +20,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 var score = 0;
 var lives = 3;
+var modeColor = 'row';
 
 changeBrickColumnCountAndOffsetLeft()
 var bricks = [];
@@ -52,7 +53,7 @@ function drawBricks() {
 				bricks[c][r].y = brickY;
 				ctx.beginPath();
 				ctx.rect(brickX, brickY, brickWidth, brickHeight);
-				ctx.fillStyle = "#0095DD";
+				ctx.fillStyle = utilsColor(c,r, modeColor);
 				ctx.fill();
 				ctx.closePath();
 			}
