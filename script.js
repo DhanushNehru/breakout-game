@@ -141,7 +141,6 @@ function draw() {
 	drawBall();
 	drawPaddle();
 	drawScore();
-	drawLives();
 	collisionDetection();
 
 	if(y + dy < ballRadius) {
@@ -153,6 +152,8 @@ function draw() {
 			lives--;
 			if(!lives) {
 				resetValues(failure);
+				drawLives();
+				return;
 			} else {
 				x = canvas.width/2;
 				y = canvas.height-30;
@@ -175,6 +176,7 @@ function draw() {
 
 	x += dx;
 	y += dy;
+	drawLives();
 	requestAnimationFrame(draw);
 }
 
