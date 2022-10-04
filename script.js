@@ -24,8 +24,34 @@ var brickPadding = 7;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 var score = 0;
-var lives = 10000;
+var lives = 3;
 var modeColor = 'row';
+
+let failure = document.querySelector('.failure');
+let failureBtn = document.querySelector('#failureBtn');
+let success = document.querySelector('.success');
+let successBtn = document.querySelector('#successBtn');
+
+function reloadPage() {
+	document.location.reload();
+}
+
+function resetValues(element) {
+	ballRadius = 0;
+	lives = 0;
+	score = 0;
+	paddleWidth = 0;
+	element.style.top = "40%";
+}
+
+//reloads page OnClick
+failureBtn.addEventListener('click', () => {
+	reloadPage();
+});
+
+successBtn.addEventListener('click', () => {
+	reloadPage();
+});
 
 const speedSlider = document.querySelector("#speed-slider");
 
@@ -37,7 +63,7 @@ speedSlider.addEventListener("input", () => {
 })
 
 changeBrickColumnCountAndOffsetLeft()
-var bricks = [];
+let bricks = [];
 for (c=0; c<brickColumnCount; c++) {
 	bricks[c] = [];
 	for (r=0; r<brickRowCount; r++) {
@@ -63,8 +89,8 @@ function drawBricks() {
 	for(c=0; c<brickColumnCount; c++) {
 		for(r=0; r<brickRowCount; r++) {
 			if(bricks[c][r].status == 1) {
-				var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
-				var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+				let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+				let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
 				bricks[c][r].x = brickX;
 				bricks[c][r].y = brickY;
 				ctx.beginPath();
@@ -96,15 +122,14 @@ function drawPaddle() {
 function collisionDetection() {
 	for(c=0; c<brickColumnCount; c++){
 		for(r=0; r<brickRowCount; r++){
-			var b = bricks[c][r];
+			let b = bricks[c][r];
 			if(b.status  == 1) {
 				if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
 					dy = -dy;
 					b.status = 0;
 					score++;
 					if(score == brickRowCount*brickColumnCount) {
-						alert("YOU WIN, CONGRADULATIONS!");
-						document.location.reload();
+						resetValues(success);
 					}
 				}
 			}
@@ -141,8 +166,7 @@ function draw() {
 		} else {
 			lives--;
 			if(!lives) {
-				alert("GAME OVER!");
-				document.location.reload();
+				resetValues(failure);
 			} else {
 				x = canvas.width/2;
 				y = canvas.height-30;
@@ -174,7 +198,7 @@ function draw() {
 document.addEventListener("mousemove", mouseMoveHandler);
 
 function mouseMoveHandler(e) {
-	var relativeX = e.clientX - canvas.offsetLeft;
+	let relativeX = e.clientX - canvas.offsetLeft;
 	if(relativeX > 0+paddleWidth/2 && relativeX < canvas.width-paddleWidth/2) {
 		paddleX = relativeX - paddleWidth/2;
 	}
@@ -186,7 +210,7 @@ function keyDownHandler(e) {
 	// "D" for right and "A" for left movement 
 	if(e.code == "KeyD") {
 
-		var relativeX = paddleX + 10;
+		let relativeX = paddleX + 10;
 		if(relativeX < canvas.width - 100) {
 			paddleX = relativeX + 10;
 		}
@@ -194,7 +218,7 @@ function keyDownHandler(e) {
 	
 	if(e.code == "KeyA") {
 
-		var relativeX = paddleX - 10;
+		let relativeX = paddleX - 10;
 		if(relativeX > 0 ) {
 			paddleX = relativeX - 10;
 		}
