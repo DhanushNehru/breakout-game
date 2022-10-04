@@ -62,6 +62,12 @@ speedSlider.addEventListener("input", () => {
 	dy = -speed;
 })
 
+const sizeSlider = document.querySelector("#size-slider");
+
+sizeSlider.addEventListener("input", () => {
+	ballRadius = sizeSlider.value;
+})
+
 changeBrickColumnCountAndOffsetLeft()
 let bricks = [];
 for (c=0; c<brickColumnCount; c++) {
@@ -155,7 +161,6 @@ function draw() {
 	drawBall();
 	drawPaddle();
 	drawScore();
-	drawLives();
 	collisionDetection();
 
 	if(y + dy < ballRadius) {
@@ -167,6 +172,8 @@ function draw() {
 			lives--;
 			if(!lives) {
 				resetValues(failure);
+				drawLives();
+				return;
 			} else {
 				x = canvas.width/2;
 				y = canvas.height-30;
@@ -191,6 +198,7 @@ function draw() {
 
 	x += dx;
 	y += dy;
+	drawLives();
 	requestAnimationFrame(draw);
 }
 
