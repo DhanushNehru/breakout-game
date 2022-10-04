@@ -56,3 +56,11 @@
 	background-color: white;
 	color: #f44336;
 }
+
+#size-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+}

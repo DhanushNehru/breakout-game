@@ -50,6 +50,12 @@ successBtn.addEventListener('click', () => {
 	reloadPage();
 });
 
+const sizeSlider = document.querySelector("#size-slider");
+
+sizeSlider.addEventListener("input", () => {
+	ballRadius = sizeSlider.value;
+})
+
 changeBrickColumnCountAndOffsetLeft()
 let bricks = [];
 for (c=0; c<brickColumnCount; c++) {
@@ -58,10 +64,12 @@ for (c=0; c<brickColumnCount; c++) {
 		bricks[c][r] = {x: 0, y:0, status: 1};
 	}
 }
+
 /*
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 */
+
 function changeBrickColumnCountAndOffsetLeft(){
 	let lengthBriks = (brickColumnCount*(brickWidth+brickPadding))+brickOffsetLeft
 	while (lengthBriks >= canvas.width) {
