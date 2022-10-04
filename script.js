@@ -1,33 +1,36 @@
-let canvas = document.getElementById('myCanvas');
-let ctx = canvas.getContext('2d');
+var canvas = document.getElementById('myCanvas');
+var ctx = canvas.getContext('2d');
 
-let x = canvas.width/2;
-let y = canvas.height - 30;
-let dx = 2;
-let dy = -2;
-let ballRadius = 25;
-let paddleHeight = 10;
-let paddleWidth = 100;
-let paddleX = (canvas.width-paddleWidth)/2;
-let rightPressed = false;
-let leftPressed = false;
-let brickRowCount = 5;
-let brickColumnCount = 8;
-let brickWidth = 100;
-let brickHeight = 10;
-let brickPadding = 7;
-let brickOffsetTop = 30;
-let brickOffsetLeft = 30;
-let score = 0;
-let lives = 3;
-let modeColor = 'row';
+var x = canvas.width/2;
+var y = canvas.height - 30;
 
+
+let speed = 2;
+
+var dx = speed;
+var dy = -speed;
+
+var ballRadius = 25;
+var paddleHeight = 10;
+var paddleWidth = 100;
+var paddleX = (canvas.width-paddleWidth)/2;
+var rightPressed = false;
+var leftPressed = false;
+var brickRowCount = 5;
+var brickColumnCount = 8;
+var brickWidth = 100;
+var brickHeight = 10;
+var brickPadding = 7;
+var brickOffsetTop = 30;
+var brickOffsetLeft = 30;
+var score = 0;
+var lives = 3;
+var modeColor = 'row';
 
 let failure = document.querySelector('.failure');
 let failureBtn = document.querySelector('#failureBtn');
 let success = document.querySelector('.success');
 let successBtn = document.querySelector('#successBtn');
-
 
 function reloadPage() {
 	document.location.reload();
@@ -49,6 +52,15 @@ failureBtn.addEventListener('click', () => {
 successBtn.addEventListener('click', () => {
 	reloadPage();
 });
+
+const speedSlider = document.querySelector("#speed-slider");
+
+speedSlider.addEventListener("input", () => {
+    speed = speedSlider.value;
+
+	dx = speed;
+	dy = -speed;
+})
 
 const sizeSlider = document.querySelector("#size-slider");
 
@@ -165,8 +177,10 @@ function draw() {
 			} else {
 				x = canvas.width/2;
 				y = canvas.height-30;
-				dx = 2;
-				dy = -2;
+				dx = speed;
+				dy = -speed; 
+
+				console.log(dx, dy)
 				paddleX = (canvas.width-paddleWidth)/2;
 			}
 		}
