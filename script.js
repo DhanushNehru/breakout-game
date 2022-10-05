@@ -130,7 +130,7 @@ function collisionDetection() {
 		for(r=0; r<brickRowCount; r++){
 			let b = bricks[c][r];
 			if(b.status  == 1) {
-				if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+				if(x+ballRadius > b.x && x-ballRadius < b.x+brickWidth && y+ballRadius > b.y && y-ballRadius < b.y+brickHeight) {
 					dy = -dy;
 					b.status = 0;
 					score++;
