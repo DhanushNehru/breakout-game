@@ -187,6 +187,7 @@ function draw() {
 	}
 	if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
 		dx = -dx;
+    dy += getRandomArbitrary(-0.4, 0.4);
 	}
 
 	if(rightPressed && paddleX < canvas.width-paddleWidth) {
@@ -204,6 +205,11 @@ function draw() {
 
 
 document.addEventListener("mousemove", mouseMoveHandler);
+
+// get a random value between two values
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 function mouseMoveHandler(e) {
 	let relativeX = e.clientX - canvas.offsetLeft;
