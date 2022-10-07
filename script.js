@@ -12,14 +12,14 @@ var dy = -speed;
 
 var ballRadius = 25;
 var paddleHeight = 10;
-var paddleWidth = 100;
+var paddleWidth = 600;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
 var brickRowCount = 5;
 var brickColumnCount = 8;
 var brickWidth = 100;
-var brickHeight = 15;
+var brickHeight = 60;
 var brickPadding = 7;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
@@ -136,8 +136,19 @@ function collisionDetection() {
 		for(r=0; r<brickRowCount; r++){
 			let b = bricks[c][r];
 			if(b.status  == 1) {
+        sideCollision =false
 				if(x+ballRadius > b.x && x-ballRadius < b.x+brickWidth && y+ballRadius > b.y && y-ballRadius < b.y+brickHeight) {
-					dy = -dy;
+          if(y > b.y && y < b.y+brickHeight){
+            if(x < b.x || x > b.x+brickWidth){
+              dx = -dx;
+              sideCollision = true;
+            }
+          }
+
+          if(!sideCollision){
+            dy = -dy;
+          }
+
           b.lives -= 1;
           if(b.lives == 0){
             b.status = 0;
@@ -146,6 +157,7 @@ function collisionDetection() {
 					if(score == brickRowCount*brickColumnCount) {
 						resetValues(success);
 					}
+          return
 				}
 			}
 		}
