@@ -1,34 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Breakout Game</title>
-	<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-	
-	<canvas id="myCanvas" width="600" height="600"></canvas>
-	<div class="speed-container">
-		<label for="speed-slider">Change speed of the ball :</label>
-		<input id="speed-slider" type="range" min="1" max="5" value="2.5">
-	</div>
-	<div class="alert success">
-		<strong>YOU WIN, CONGRATULATIONS!</strong>
-		<button id="successBtn" class="close">
-			Restart the Game
-		</button>
-	</div>
-	<div class="alert failure">
-		<strong>GAME OVER!</strong>
-		<button id="failureBtn" class="close">
-			Restart the Game
-		</button>
-	</div>
-	<div id="size-container">
-		<label for="size-slider">Change size of the ball :</label>
-		<input id="size-slider" type="range" min="3" max="30">
-	</div>
-<script src="utils/utilsColor.js"></script>
-<script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Breakout Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="heading">The Breakout Game</h1>
+    <canvas id="myCanvas" width="600" height="600"></canvas>
+    <div class="speed-container">
+      <label for="speed-slider">Change speed of the ball :</label>
+      <input id="speed-slider" type="range" min="1" max="5" value="2.5" />
+    </div>
+    <div class="alert success">
+      <strong>YOU WIN, CONGRATULATIONS!</strong>
+      <button id="successBtn" class="close">Restart the Game</button>
+    </div>
+    <div class="alert failure">
+      <strong>GAME OVER!</strong>
+      <button id="failureBtn" class="close">Restart the Game</button>
+    </div>
+    <div id="size-container">
+      <label for="size-slider">Change size of the ball :</label>
+      <input id="size-slider" type="range" min="3" max="30" />
+    </div>
+    <footer>
+      <div class="row primary">
+        <div class="column about">
+          <h3 class="topic">Breakout Game</h3>
+
+          <p>
+            This game is simple and easy to play and also beginner friendly made for children.So why are you waiting?Start playing the game and enjoy to the fullest!
+          </p>
+
+          <div class="social">
+            <a href="/"><i class="fa-brands fa-facebook-square"></i></a>
+            <a href="/"><i class="fa-brands fa-instagram-square"></i></a>
+            <a href="/"><i class="fa-brands fa-twitter-square"></i></a>
+            <a href="/"><i class="fa-brands fa-youtube-square"></i></a>
+            <a href="/"><i class="fa-brands fa-whatsapp-square"></i></a>
+          </div>
+        </div>
+
+        <div class="column links">
+          <h3 class="topic">Some Links</h3>
+
+          <ul>
+            <li>
+              <a href="#faq">F.A.Q</a>
+            </li>
+            <li>
+              <a href="#cookies-policy">Cookies Policy</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="column links">
+          <h3 class="topic">Some Links</h3>
+          <ul>
+            <li>
+              <a href="#terms-of-services">Terms Of Service</a>
+            </li>
+            <li>
+              <a href="#support">Support</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div class="column subscribe">
+          <h3 class="topic">Newsletter</h3>
+          <div>
+            <input
+              class="input"
+              type="email"
+              placeholder="Your email id here"
+            />
+            <button class="input buttonSus">Subscribe</button>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="row copyright">
+        <div class="footer-menu">
+          Copyright &copy; 2022 The Breakout Game ❤
+        </div>
+      </div>
+    </footer>
+    <script src="utils/utilsColor.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
