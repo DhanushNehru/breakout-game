@@ -12,14 +12,14 @@ var dy = -speed;
 
 var ballRadius = 25;
 var paddleHeight = 10;
-var paddleWidth = 600;
+var paddleWidth = 100;
 var paddleX = (canvas.width-paddleWidth)/2;
 var rightPressed = false;
 var leftPressed = false;
 var brickRowCount = 5;
 var brickColumnCount = 8;
 var brickWidth = 100;
-var brickHeight = 60;
+var brickHeight = 15;
 var brickPadding = 7;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
