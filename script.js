@@ -19,7 +19,7 @@ var leftPressed = false;
 var brickRowCount = 5;
 var brickColumnCount = 8;
 var brickWidth = 100;
-var brickHeight = 10;
+var brickHeight = 15;
 var brickPadding = 7;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
@@ -73,7 +73,7 @@ let bricks = [];
 for (c=0; c<brickColumnCount; c++) {
 	bricks[c] = [];
 	for (r=0; r<brickRowCount; r++) {
-		bricks[c][r] = {x: 0, y:0, status: 1};
+		bricks[c][r] = {x: 0, y:0, status: 1, lives: getRandomArbitrary(1,5,true)};
 	}
 }
 
@@ -103,6 +103,12 @@ function drawBricks() {
 				ctx.rect(brickX, brickY, brickWidth, brickHeight);
 				ctx.fillStyle = utilsColor(c,r, modeColor);
 				ctx.fill();
+
+        // ddraw block lives
+        ctx.font = `${brickHeight-2}px Arial`;
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText(bricks[c][r].lives, brickX+(brickWidth/2), brickY+brickHeight-2);
+
 				ctx.closePath();
 			}
 		}
@@ -130,13 +136,28 @@ function collisionDetection() {
 		for(r=0; r<brickRowCount; r++){
 			let b = bricks[c][r];
 			if(b.status  == 1) {
+        sideCollision =false
 				if(x+ballRadius > b.x && x-ballRadius < b.x+brickWidth && y+ballRadius > b.y && y-ballRadius < b.y+brickHeight) {
-					dy = -dy;
-					b.status = 0;
-					score++;
+          if(y > b.y && y < b.y+brickHeight){
+            if(x < b.x || x > b.x+brickWidth){
+              dx = -dx;
+              sideCollision = true;
+            }
+          }
+
+          if(!sideCollision){
+            dy = -dy;
+          }
+
+          b.lives -= 1;
+          if(b.lives == 0){
+            b.status = 0;
+            score++;
+          }
 					if(score == brickRowCount*brickColumnCount) {
 						resetValues(success);
 					}
+          return
 				}
 			}
 		}
@@ -207,8 +228,12 @@ function draw() {
 document.addEventListener("mousemove", mouseMoveHandler);
 
 // get a random value between two values
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
+function getRandomArbitrary(min, max,toInt=false) {
+  let value = Math.random() * (max - min) + min;
+  if(toInt){
+    return Math.round(value)
+  }
+  return value
 }
 
 function mouseMoveHandler(e) {
