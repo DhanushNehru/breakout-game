@@ -3,9 +3,8 @@ const arrayColor = [
     'green',
     'red',
     'orange',
-    'purple',
+    'MediumPurple',
     'yellow',
-    'black',
 ]
 
 let setColor=[]

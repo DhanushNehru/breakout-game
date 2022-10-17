@@ -33,14 +33,23 @@
 	margin: 0 auto;
 	max-width: 400px;
 	border-radius: 5px;
+	font-size: 20px;
 }
 
 .alert.failure {
 	background-color: #f44336;
 }
 
+.alert.failure strong {
+	color: #000000;
+}
+
 .alert.success {
 	background-color: #04AA6D;
+}
+
+.alert.success strong {
+	color: #000000;
 }
 
 .close {
@@ -117,7 +126,7 @@ footer {
   .topic {
 	width: 100%;
 	text-align: left;
-	color: white;
+	color: black;
 	font-size: 1.4em;
 	white-space: nowrap;
 	cursor: pointer;
@@ -142,7 +151,7 @@ footer {
 	cursor: pointer;
   }
   .about p {
-	text-align: justify;
+	text-align: left;
 	line-height: 2;
 	margin: 0;
   }
@@ -171,8 +180,6 @@ footer {
   .social i {
 	color: #bac6d9;
   }
-  
-  
   
   .footer-menu{
 	align-items: center;
