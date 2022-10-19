@@ -97,6 +97,10 @@ main{
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
+	background-color: rgb(55, 54, 54, 0.5);
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 20px;
 }
 
 .game-option{
@@ -104,6 +108,10 @@ main{
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	background-color: rgb(55, 54, 54, 0.5);
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 20px;
 }
 
 #size-container, .speed-container{
