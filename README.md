@@ -3,6 +3,15 @@ This game is created using HTML, CSS and Javascript
 
 ![gameplay](https://user-images.githubusercontent.com/32013268/193729504-6ee48ed9-999c-4444-95c7-b0aaad6a56cb.gif)
 
+## Gitpod
+
+In the cloud-free development environment where you can directly start coding.
+
+The below command will open up the index.html in a browser in gitpod 
+`python -m http.server 8000`
+
+You can use Gitpod in the cloud [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/DhanushNehru/breakout-game/)
+
 **Game Overview**
 
 - The game would consist of 3 lives in order to clear out all the blocks.
