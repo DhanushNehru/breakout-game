@@ -56,19 +56,20 @@ main{
 	text-align: center;
 	margin: 0 auto;
 	max-width: 400px;
-	border-radius: 5px;
+	border-radius: 25px;
 }
 
 .alert.failure, .alert.failure strong {
-	background-color: #f44336;
+	background-color: #F86F03;
 }
 
 .alert.success, .alert.success strong {
-	background-color: #04AA6D;
+	background-color: #7A9D54;
+
 }
 
 .close {
-	border-radius: 6px;
+	border-radius: 10px;
 	display: block;
 	margin-left: 10px;
 	background-color: transparent;
@@ -80,11 +81,12 @@ main{
 	margin-right: auto;
 	margin-top: 10px;
 	cursor: pointer;
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #successBtn:hover {
 	background-color: white;
-	color: #04AA6D;
+	color: #557A46;
 }
 
 #failureBtn:hover {
