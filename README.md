@@ -11,8 +11,8 @@ The following technologies are used to create the game
 ## Images
 
 ![gameplay](https://user-images.githubusercontent.com/32013268/193729504-6ee48ed9-999c-4444-95c7-b0aaad6a56cb.gif)
-![game](./breakout_game.JPG)
-![gameover](./breakout_game(1).jpg)
+<!-- ![game](./breakout_game_old.JPG) -->
+![gameover](./breakout_game_new.jpg)
 
 
 ## Rules of the game
