@@ -244,11 +244,11 @@ function mouseMoveHandler(e) {
 	}
 }
 
-document.addEventListener("keypress", keyDownHandler);
+document.addEventListener("keydown", keyDownHandler);
 
 function keyDownHandler(e) {
-	// "D" for right and "A" for left movement 
-	if(e.code == "KeyD") {
+	// "D" or right arrow key for right and "A" or left arrow key for left movement 
+	if(e.code == "KeyD" || e.code == "ArrowRight") {
 
 		let relativeX = paddleX + 10;
 		if(relativeX < canvas.width - 100) {
@@ -256,7 +256,7 @@ function keyDownHandler(e) {
 		}
 	}
 	
-	if(e.code == "KeyA") {
+	if(e.code == "KeyA" || e.code == "ArrowLeft") {
 
 		let relativeX = paddleX - 10;
 		if(relativeX > 0 ) {
