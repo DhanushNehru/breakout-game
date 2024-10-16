@@ -94,6 +94,7 @@ main{
 	color: #F86F03;
 }
 
+
 .game-info{
 	display: flex;
 	flex-direction: column;
@@ -130,6 +131,27 @@ main{
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+#pauseBtn {
+	background-color: rgb(255, 253, 122); 
+	color: black; 
+	border: 2px solid #04AA6D;
+	border-radius: 7%;
+	border: none;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+#pauseBtn:hover {
+	background-color: #008CBA;
+	color: white;
 }
 
 footer {
