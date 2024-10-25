@@ -1,5 +1,3 @@
-import { utilsColor } from './utils/utilsColor.js';
-
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 
@@ -75,9 +73,9 @@ sizeSlider.addEventListener("input", () => {
 
 changeBrickColumnCountAndOffsetLeft()
 let bricks = [];
-for (let c = 0; c<brickColumnCount; c++) {
+for (c=0; c<brickColumnCount; c++) {
     bricks[c] = [];
-    for (let r = 0; r<brickRowCount; r++) {
+    for (r=0; r<brickRowCount; r++) {
         bricks[c][r] = {x: 0, y:0, status: 1, lives: getRandomArbitrary(1,5,true)};
     }
 }
@@ -92,8 +90,8 @@ function changeBrickColumnCountAndOffsetLeft(){
 }
 
 function drawBricks() {
-    for(let c = 0; c<brickColumnCount; c++) {
-        for(let r = 0; r<brickRowCount; r++) {
+    for(c=0; c<brickColumnCount; c++) {
+        for(r=0; r<brickRowCount; r++) {
             if(bricks[c][r].status == 1) {
                 let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
                 let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
@@ -132,11 +130,11 @@ function drawPaddle() {
 }
 
 function collisionDetection() {
-    for(let c = 0; c<brickColumnCount; c++){
-        for(let r = 0; r<brickRowCount; r++){
+    for(c=0; c<brickColumnCount; c++){
+        for(r=0; r<brickRowCount; r++){
             let b = bricks[c][r];
             if(b.status  == 1) {
-                let sideCollision =false
+                sideCollision =false
                 if(x+ballRadius > b.x && x-ballRadius < b.x+brickWidth && y+ballRadius > b.y && y-ballRadius < b.y+brickHeight) {
                     if(y > b.y && y < b.y+brickHeight){
                         if(x < b.x || x > b.x+brickWidth){
