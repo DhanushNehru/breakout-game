@@ -30,3 +30,5 @@ function useColor(modeColor, X, Y){
     
     return arrayColor[0]
 }
+
+export { utilsColor }
