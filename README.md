@@ -47,6 +47,10 @@ You can use Gitpod in the cloud [![Gitpod Ready-to-Code](https://img.shields.io/
 ## Controls
 - Move mouse to control the paddle, or use 'A'and the left arrow key or 'D' and the right arrow key for left and right movement respectively.
 
+## Linting Status
+
+![Lint Status](https://github.com/DhanushNehru/breakout-game/actions/workflows/lint.yml/badge.svg)
+
 
 Created with <img src="https://user-images.githubusercontent.com/32013268/193729561-194dea3a-0255-406e-9329-ad5000f1f361.png" height="50px">
 
