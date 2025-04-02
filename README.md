@@ -8,6 +8,7 @@ The following technologies are used to create the game
 - HTML 
 - CSS
 - JAVASCRIPT
+
 ## Images
 
 ![gameplay](https://user-images.githubusercontent.com/32013268/193729504-6ee48ed9-999c-4444-95c7-b0aaad6a56cb.gif)
