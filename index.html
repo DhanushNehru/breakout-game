@@ -56,8 +56,17 @@
         Game ❤</span
       >
     </footer>
+    <!-- Load utility scripts first -->
     <script src="utils/utilsCopyright.js"></script>
     <script src="utils/utilsColor.js"></script>
+    
+    <!-- Load game modules in the correct order -->
+    <script src="scripts/config.js"></script>
+    <script src="scripts/rendering.js"></script>
+    <script src="scripts/controls.js"></script>
+    <script src="scripts/gameplay.js"></script>
+    
+    <!-- Load main script last -->
     <script src="script.js"></script>
   </body>
 </html>
