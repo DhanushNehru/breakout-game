@@ -35,16 +35,6 @@ The following technologies are used to create the game
 
 - **Customizable Difficulty:** The size and speed of the ball can be changed to increase/decrease the difficulty of the game.
 
-## Gitpod
-
-In the cloud-free development environment where you can directly start coding.
-
-The below command will open up the index.html in a browser in gitpod 
-`python -m http.server 8000`
-
-You can use Gitpod in the cloud [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/DhanushNehru/breakout-game/)
-
-
 ## Controls
 - Move mouse to control the paddle, or use 'A'and the left arrow key or 'D' and the right arrow key for left and right movement respectively.
 
@@ -57,7 +47,5 @@ Let's play the game, drop :star: if you liked it.
 *Thanks for dropping by.* 🤝
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-### Connect 👉 [**Twitter**](https://twitter.com/Dhanush_Nehru) **/** [**Instagram**](https://www.instagram.com/dhanush_nehru/) **/** [**Github**](https://github.com/DhanushNehru/) **/** [**Youtube**](https://www.youtube.com/@dhanushnehru?sub_confirmation=1) **/** [**Newsletter**](https://dhanushn.substack.com/) **/** [**Discord**](https://discord.com/invite/Yn9g6KuWyA)
 
 
