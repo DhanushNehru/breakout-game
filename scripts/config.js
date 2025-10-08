@@ -5,6 +5,8 @@ const config = {
     // Ball
     ballRadius: 25,
     initialSpeed: 2,
+    // Ball color (default yellow)
+    ballColor: '#FFFF00',
     
     // Paddle
     paddleHeight: 10,
@@ -32,6 +34,8 @@ const elements = {
     pauseBtn: document.getElementById('pauseBtn'),
     speedSlider: document.querySelector("#speed-slider"),
     sizeSlider: document.querySelector("#size-slider")
+    ,
+    colorPicker: document.querySelector('#color-picker')
 };
 
 function getRandomArbitrary(min, max, toInt=false) {
