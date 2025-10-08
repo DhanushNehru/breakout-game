@@ -33,8 +33,7 @@ const elements = {
     successBtn: document.querySelector('#successBtn'),
     pauseBtn: document.getElementById('pauseBtn'),
     speedSlider: document.querySelector("#speed-slider"),
-    sizeSlider: document.querySelector("#size-slider")
-    ,
+    sizeSlider: document.querySelector("#size-slider"),
     colorPicker: document.querySelector('#color-picker')
 };
 
