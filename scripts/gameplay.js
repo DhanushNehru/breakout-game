@@ -123,7 +123,7 @@ function setupSliders() {
     // Color picker listener
     if (elements.colorPicker) {
         // initialize picker value from config/gameState
-        elements.colorPicker.value = gameState.ballColor || config.ballColor;
+        elements.colorPicker.value = gameState.ballColor ?? config.ballColor;
         elements.colorPicker.addEventListener('input', () => {
             gameState.ballColor = elements.colorPicker.value;
         });
