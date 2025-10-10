@@ -1,7 +1,7 @@
 * {
 	padding: 0;
 	margin: 0;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'T', 'Roboto', sans-serif;
 }
 
 body{
@@ -14,13 +14,24 @@ body{
 	height: 100vh;
 }
 
-header{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 10vh;
-	width: 100%;
-	background-color: #0b0404;
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+header {
+    display: flex;
+    justify-content: space-between; /* <-- change this line */
+    align-items: center;
+    height: 10vh;
+    width: 100%;
+    background-color: #0b0404;
+    padding: 0 30px;
+}
+
+
+body.light-mode header {
+    background-color: #eaeaea;
 }
 
 main{
@@ -44,6 +55,10 @@ main{
 	margin: 10px;
 }
 
+body.light-mode #myCanvas {
+    background: #fff;
+}
+
 .alert {
 	padding: 15px;
 	color: white;
@@ -63,9 +78,21 @@ main{
 	background-color: #F86F03;
 }
 
+body.light-mode .alert.failure,
+body.light-mode .alert.failure strong {
+    background-color: #ffcdd2;
+    color: #222;
+}
+
 .alert.success, .alert.success strong {
 	background-color: #7A9D54;
 
+}
+
+body.light-mode .alert.success,
+body.light-mode .alert.success strong {
+    background-color: #c8e6c9;
+    color: #222;
 }
 
 .close {
@@ -104,6 +131,11 @@ main{
 	border: 2px solid black;
 	border-radius: 5px;
 	padding: 20px;
+}
+
+body.light-mode .game-info,
+body.light-mode .game-info * {
+    color: #222 !important;
 }
 
 .game-option{
@@ -174,4 +206,20 @@ footer {
 	  grid-template-columns: 1fr;
 	}
   
-  } 
+  }
+
+  #themeToggle {
+    margin-left: auto; 
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+#themeToggle:hover {
+    background: rgba(255,255,255,0.1);
+}
