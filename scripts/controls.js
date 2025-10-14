@@ -4,6 +4,8 @@ const controls = {
     isPaused: false
 };
 
+let listenersAttached = false;
+
 function keyDownHandler(e) {
     // "D" or right arrow key for right and "A" or left arrow key for left movement 
     if(e.code == "KeyD" || e.code == "ArrowRight") {
@@ -53,6 +55,9 @@ function reloadPage() {
 }
 
 function setupEventListeners() {
+    if (listenersAttached) {
+        return;
+    }
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
     document.addEventListener("mousemove", mouseMoveHandler);
@@ -60,4 +65,5 @@ function setupEventListeners() {
     elements.failureBtn.addEventListener('click', reloadPage);
     elements.successBtn.addEventListener('click', reloadPage);
     elements.pauseBtn.addEventListener("click", togglePause);
+    listenersAttached = true;
 }
