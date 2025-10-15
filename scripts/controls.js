@@ -41,13 +41,15 @@ function mouseMoveHandler(e) {
     }
 }
 
+function updatePauseButtonText() {
+	if (elements.pauseBtn) {
+		elements.pauseBtn.textContent = controls.isPaused ? "Resume" : "Pause";
+	}
+}
+
 function togglePause() {
     controls.isPaused = !controls.isPaused;
-    if (controls.isPaused) {
-        elements.pauseBtn.textContent = "Resume";
-    } else {
-        elements.pauseBtn.textContent = "Pause";
-    }
+	updatePauseButtonText();
 }
 
 function reloadPage() {

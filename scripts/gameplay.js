@@ -193,7 +193,11 @@ function init() {
     if (elements.success) elements.success.style.top = "-40%";
     if (elements.failure) elements.failure.style.top = "-40%";
     controls.isPaused = false;
-    if (elements.pauseBtn) elements.pauseBtn.textContent = "Pause";
+    if (typeof updatePauseButtonText === "function") {
+        updatePauseButtonText();
+    } else if (elements.pauseBtn) {
+        elements.pauseBtn.textContent = "Pause";
+    }
     
     setupEventListeners();
     setupSliders();
