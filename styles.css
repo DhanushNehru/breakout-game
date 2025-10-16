@@ -131,13 +131,16 @@ body.light-mode .alert.success strong {
 	border: 2px solid black;
 	border-radius: 5px;
 	padding: 20px;
+	--text-color: white;
 }
 
-body.light-mode .game-info,
-body.light-mode .game-info * {
-    color: #222 !important;
+.game-info * {
+    color: var(--text-color);
 }
 
+body.light-mode .game-info {
+    --text-color: #222;
+}
 .game-option{
 	display: flex;
 	flex-direction: column;
