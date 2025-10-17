@@ -96,10 +96,8 @@ function collisionDetection() {
 }
 
 function resetValues(element) {
-    gameState.ballRadius = 0;
-    gameState.lives = 0;
-    gameState.score = 0;
-    config.paddleWidth = 0;
+    // Show overlay and mark game over; do not mutate persistent sizes
+    // Lives/score are displayed but will be reinitialized by init()
     element.style.top = "40%";
     gameState.gameOver = true;
 }
@@ -191,6 +189,15 @@ function init() {
     gameState.dy = -config.initialSpeed;
     gameState.ballRadius = config.ballRadius;
     gameState.paddleX = (config.canvas.width-config.paddleWidth)/2;
+    // Ensure overlays hidden and game unpaused on init
+    if (elements.success) elements.success.style.top = "-40%";
+    if (elements.failure) elements.failure.style.top = "-40%";
+    controls.isPaused = false;
+    if (typeof updatePauseButtonText === "function") {
+        updatePauseButtonText();
+    } else if (elements.pauseBtn) {
+        elements.pauseBtn.textContent = "Pause";
+    }
     
     setupEventListeners();
     setupSliders();
