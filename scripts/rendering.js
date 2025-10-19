@@ -47,7 +47,9 @@ function drawScore(score) {
 function drawLives(lives) {
     ctx.font = "20px Roboto";
     ctx.fillStyle = document.body.classList.contains('light-mode') ? "#222" : "#fff";
-    ctx.fillText("Lives: " + lives, config.canvas.width - 100, 20);
+    ctx.textAlign = 'right';
+    ctx.fillText("Lives: " + lives, config.canvas.width - 8, 20);
+    ctx.textAlign = 'start'; // reset to default for other text drawing
 }
 
 function clearCanvas() {
