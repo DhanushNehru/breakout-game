@@ -27,6 +27,13 @@ function drawBricks(bricks) {
                 ctx.fillStyle = utilsColor(c, r, config.modeColor);
                 ctx.fill();
 
+                // Add special brick indicator (power-up chance)
+                if (Math.random() < 0.1) { // 10% chance to show as special brick
+                    ctx.strokeStyle = "#FFD700";
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+
                 // draw block lives
                 ctx.font = `${config.brickHeight-2}px Arial`;
                 ctx.fillStyle = "#FFFFFF";
@@ -42,12 +49,37 @@ function drawScore(score) {
     ctx.font = "16px Arial";
     ctx.fillStyle = "white";
     ctx.fillText("Score: "+score, 8, 20);
+    
+    // Draw high score
+    const highScore = getBestScore();
+    if (highScore > 0) {
+        ctx.fillText("High Score: " + highScore, 8, 40);
+    }
 }
 
 function drawLives(lives) {
     ctx.font = "16px Arial";
     ctx.fillStyle = "white";
     ctx.fillText("Lives: "+lives, config.canvas.width-65, 20);
+    
+    // Draw current level
+    ctx.fillText("Level: " + getCurrentLevel(), config.canvas.width-80, 40);
+}
+
+// Draw power-ups
+function drawPowerUps() {
+    powerUps.active.forEach(powerUp => {
+        ctx.save();
+        ctx.fillStyle = getPowerUpColor(powerUp.type);
+        ctx.fillRect(powerUp.x, powerUp.y, powerUp.width, powerUp.height);
+        
+        // Draw power-up symbol
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "#000000";
+        ctx.textAlign = "center";
+        ctx.fillText(getPowerUpSymbol(powerUp.type), powerUp.x + powerUp.width/2, powerUp.y + powerUp.height/2 + 4);
+        ctx.restore();
+    });
 }
 
 function clearCanvas() {

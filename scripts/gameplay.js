@@ -84,9 +84,36 @@ function collisionDetection() {
                     if(b.lives == 0){
                         b.status = 0;
                         gameState.score++;
+                        
+                        // Play brick break sound
+                        playBrickBreakSound();
+                        
+                        // Create power-up drop
+                        createPowerUp(b.x + config.brickWidth/2, b.y + config.brickHeight/2);
+                        
+                        // Create particle effect
+                        createBrickParticles(b.x, b.y, utilsColor(c, r, config.modeColor));
+                        
+                        // Update high score
+                        const isNewHighScore = updateScore(1);
+                        if (isNewHighScore) {
+                            createExplosion(b.x + config.brickWidth/2, b.y + config.brickHeight/2, '#FFD700');
+                        }
+                    } else {
+                        // Play ball hit sound
+                        playBallHitSound();
+                        
+                        // Create smaller particle effect for hit
+                        createBallParticles(gameState.x, gameState.y);
                     }
                     if(gameState.score == config.brickRowCount*config.brickColumnCount) {
-                        resetValues(elements.success);
+                        if (checkLevelAdvance()) {
+                            // Level advanced, continue playing
+                            return;
+                        } else {
+                            // Game completed all levels
+                            resetValues(elements.success);
+                        }
                     }
                     return;
                 }
@@ -100,6 +127,13 @@ function resetValues(element) {
     // Lives/score are displayed but will be reinitialized by init()
     element.style.top = "40%";
     gameState.gameOver = true;
+    
+    // Play appropriate sound
+    if (element === elements.success) {
+        playGameWinSound();
+    } else if (element === elements.failure) {
+        playGameOverSound();
+    }
 }
 
 // Update game settings from sliders
@@ -115,6 +149,39 @@ function setupSliders() {
     elements.sizeSlider.addEventListener("input", () => {
         gameState.ballRadius = parseInt(elements.sizeSlider.value);
     });
+    
+    elements.themeSelector.addEventListener("change", () => {
+        config.currentTheme = elements.themeSelector.value;
+        applyTheme(config.currentTheme);
+    });
+    
+    elements.soundToggleBtn.addEventListener("click", () => {
+        const isEnabled = toggleSound();
+        elements.soundToggleBtn.textContent = isEnabled ? "🔊 Sound On" : "🔇 Sound Off";
+        elements.soundToggleBtn.classList.toggle("muted", !isEnabled);
+    });
+}
+
+// Apply theme changes
+function applyTheme(theme) {
+    const canvas = config.canvas;
+    const ctx = canvas.getContext('2d');
+    
+    switch(theme) {
+        case 'neon':
+            canvas.style.boxShadow = '0 0 20px #00FFFF, 0 0 40px #00FFFF, 0 0 60px #00FFFF';
+            canvas.style.border = '2px solid #00FFFF';
+            break;
+        case 'retro':
+            canvas.style.boxShadow = '0 0 10px #FF6B6B';
+            canvas.style.border = '3px solid #FF6B6B';
+            break;
+        case 'classic':
+        default:
+            canvas.style.boxShadow = 'none';
+            canvas.style.border = 'none';
+            break;
+    }
 }
 
 // Main game loop
@@ -125,6 +192,10 @@ function draw() {
     drawPaddle(gameState.paddleX);
     drawScore(gameState.score);
     drawLives(gameState.lives);
+    
+    // Draw power-ups and particles
+    drawPowerUps();
+    drawParticles();
 
     if (gameState.gameOver || controls.isPaused) {
         requestAnimationFrame(draw);
@@ -132,6 +203,11 @@ function draw() {
     }
 
     collisionDetection();
+    
+    // Update power-ups and particles
+    updatePowerUps();
+    updateParticles();
+    checkPowerUpCollisions();
 
     // Ball wall collision
     if(gameState.y + gameState.dy < gameState.ballRadius) {
@@ -139,6 +215,7 @@ function draw() {
     } else if (gameState.y + gameState.dy > config.canvas.height-gameState.ballRadius) {
         if(gameState.x > gameState.paddleX && gameState.x < gameState.paddleX + config.paddleWidth) {
             gameState.dy = -gameState.dy;
+            playPaddleHitSound();
         } else {
             gameState.lives--;
             if(gameState.lives <= 0) {
@@ -189,6 +266,16 @@ function init() {
     gameState.dy = -config.initialSpeed;
     gameState.ballRadius = config.ballRadius;
     gameState.paddleX = (config.canvas.width-config.paddleWidth)/2;
+    
+    // Reset power-ups and particles
+    powerUps.active = [];
+    particles.active = [];
+    
+    // Load high score and reset level system
+    loadHighScore();
+    resetCurrentScore();
+    resetLevelSystem();
+    
     // Ensure overlays hidden and game unpaused on init
     if (elements.success) elements.success.style.top = "-40%";
     if (elements.failure) elements.failure.style.top = "-40%";

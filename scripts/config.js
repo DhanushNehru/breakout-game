@@ -21,7 +21,8 @@ const config = {
     
     // Game state
     initialLives: 3,
-    modeColor: 'row'
+    modeColor: 'row',
+    currentTheme: 'classic'
 };
 
 const elements = {
@@ -31,7 +32,9 @@ const elements = {
     successBtn: document.querySelector('#successBtn'),
     pauseBtn: document.getElementById('pauseBtn'),
     speedSlider: document.querySelector("#speed-slider"),
-    sizeSlider: document.querySelector("#size-slider")
+    sizeSlider: document.querySelector("#size-slider"),
+    themeSelector: document.querySelector("#theme-selector"),
+    soundToggleBtn: document.getElementById('soundToggleBtn')
 };
 
 function getRandomArbitrary(min, max, toInt=false) {
