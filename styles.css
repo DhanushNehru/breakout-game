@@ -230,3 +230,13 @@ footer {
 body.light-mode #themeToggle:hover {
     background: rgba(0,0,0,0.06);
 }
+
+#themeToggle:focus-visible {
+    background: rgba(255,255,255,0.1);
+    outline: none;
+}
+
+body.light-mode #themeToggle:focus-visible {
+    background: rgba(0,0,0,0.06);
+    outline: none;
+}
