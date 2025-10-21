@@ -3,7 +3,9 @@ const ctx = config.canvas.getContext('2d');
 function drawBall(x, y, ballRadius) {
     ctx.beginPath();
     ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#FFFF00";
+    // Prefer live color from gameState if available, otherwise fall back to config
+    const ballColor = (typeof gameState !== 'undefined' && gameState.ballColor) ? gameState.ballColor : config.ballColor;
+    ctx.fillStyle = ballColor;
     ctx.fill();
     ctx.closePath();
 }

@@ -5,6 +5,8 @@ const gameState = {
     dy: -config.initialSpeed,
     speed: config.initialSpeed,
     ballRadius: config.ballRadius,
+    // current ball color (can be changed at runtime)
+    ballColor: config.ballColor,
     paddleX: (config.canvas.width-config.paddleWidth)/2,
     score: 0,
     lives: config.initialLives,
@@ -115,6 +117,15 @@ function setupSliders() {
     elements.sizeSlider.addEventListener("input", () => {
         gameState.ballRadius = parseInt(elements.sizeSlider.value);
     });
+
+    // Color picker listener
+    if (elements.colorPicker) {
+        // initialize picker value from config/gameState
+        elements.colorPicker.value = gameState.ballColor ?? config.ballColor;
+        elements.colorPicker.addEventListener('input', () => {
+            gameState.ballColor = elements.colorPicker.value;
+        });
+    }
 }
 
 // Main game loop
@@ -188,6 +199,8 @@ function init() {
     gameState.dx = config.initialSpeed;
     gameState.dy = -config.initialSpeed;
     gameState.ballRadius = config.ballRadius;
+    // ensure gameState color is set from config on new game
+    gameState.ballColor = config.ballColor;
     gameState.paddleX = (config.canvas.width-config.paddleWidth)/2;
     // Ensure overlays hidden and game unpaused on init
     if (elements.success) elements.success.style.top = "-40%";
