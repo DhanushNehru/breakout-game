@@ -41,14 +41,16 @@ function drawBricks(bricks) {
 function drawScore(score) {
     ctx.font = "20px Roboto";
     ctx.fillStyle = document.body.classList.contains('light-mode') ? "#222" : "#fff";
-    ctx.fillText("Score: " + score, 8, 20);
+    ctx.textAlign = 'left';
+    ctx.fillText("Score: " + score, 8, 25);
 }
 
 function drawLives(lives) {
     ctx.font = "20px Roboto";
     ctx.fillStyle = document.body.classList.contains('light-mode') ? "#222" : "#fff";
     ctx.textAlign = 'right';
-    ctx.fillText("Lives: " + lives, config.canvas.width - 8, 20);
+    ctx.fillText("Lives: " + lives, config.canvas.width - 8, 25);
+    ctx.textAlign = 'start'; 
 }
 
 function clearCanvas() {
