@@ -129,10 +129,9 @@ function activatePowerUp(type) {
     }
 }
 
-// Create additional balls for multi-ball power-up
-function createMultiBall() {
-    // This would create additional ball objects
-    // For now, we'll just increase the ball speed temporarily
+// Increase ball speed for multi-ball power-up (actual multi-ball not implemented)
+function increaseMultiBallSpeed() {
+    // Temporarily increases the ball speed
     gameState.speed *= 1.2;
 }
 
