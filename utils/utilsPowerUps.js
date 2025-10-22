@@ -65,8 +65,8 @@ function checkPowerUpCollisions() {
         
         if (powerUp.x < gameState.paddleX + config.paddleWidth &&
             powerUp.x + powerUp.width > gameState.paddleX &&
-            powerUp.y < gameState.y + gameState.ballRadius &&
-            powerUp.y + powerUp.height > gameState.y - gameState.ballRadius) {
+            powerUp.y < config.canvas.height &&
+            powerUp.y + powerUp.height > config.canvas.height - config.paddleHeight) {
             
             activatePowerUp(powerUp.type);
             powerUps.active.splice(i, 1);
