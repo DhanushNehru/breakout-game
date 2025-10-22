@@ -18,7 +18,7 @@ if (themeToggle) {
     };
     // Restore theme from localStorage
     const savedTheme = localStorage.getItem('theme');
-    const themeToggle = document.getElementById('themeToggle');
+    // const themeToggle = document.getElementById('themeToggle'); // Removed redundant redeclaration
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
         if (themeToggle) updateThemeToggleButton(true);
