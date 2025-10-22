@@ -1,54 +1,50 @@
 window.onload = function() {
-    init();
-};
+    // Initialize the game
+    if (typeof init === 'function') {
+        init();
+    }
 
-const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
-    themeToggle.onclick = function() {
-        document.body.classList.toggle('light-mode');
-        if (document.body.classList.contains('light-mode')) {
-            themeToggle.textContent = '☀️';
-            themeToggle.setAttribute('aria-pressed', 'true');
-            themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-        } else {
-            themeToggle.textContent = '🌙';
-            themeToggle.setAttribute('aria-pressed', 'false');
-            themeToggle.setAttribute('aria-label', 'Switch to light mode');
-        }
-    };
-    // Restore theme from localStorage
+    const themeToggle = document.getElementById('themeToggle');
+
+    // Helper: update button icon + accessibility labels
+    function updateThemeToggleButton(isLight) {
+        if (!themeToggle) return;
+        themeToggle.textContent = isLight ? '☀️' : '🌙';
+        themeToggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+        themeToggle.setAttribute(
+            'aria-label',
+            isLight ? 'Switch to dark mode' : 'Switch to light mode'
+        );
+    }
+
+    if (!themeToggle) return; // Exit if toggle button is missing
+
+    // Restore saved theme from localStorage
     const savedTheme = localStorage.getItem('theme');
-    // const themeToggle = document.getElementById('themeToggle'); // Removed redundant redeclaration
+
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
-        if (themeToggle) updateThemeToggleButton(true);
-    } else {
+        updateThemeToggleButton(true);
+    } else if (savedTheme === 'dark') {
         document.body.classList.remove('light-mode');
-        if (themeToggle) updateThemeToggleButton(false);
+        updateThemeToggleButton(false);
+    } else {
+        // No preference saved — use system preference
+        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        document.body.classList.toggle('light-mode', prefersLight);
+        updateThemeToggleButton(prefersLight);
     }
-    init();
-};
 
-const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
+    // Handle button clicks to toggle theme
     themeToggle.onclick = function() {
         const isLight = !document.body.classList.contains('light-mode');
         document.body.classList.toggle('light-mode');
         updateThemeToggleButton(isLight);
-        // Persist theme preference
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    };
-}
 
-// Helper to update button state
-function updateThemeToggleButton(isLight) {
-    if (isLight) {
-        themeToggle.textContent = '☀️';
-        themeToggle.setAttribute('aria-pressed', 'true');
-        themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-    } else {
-        themeToggle.textContent = '🌙';
-        themeToggle.setAttribute('aria-pressed', 'false');
-        themeToggle.setAttribute('aria-label', 'Switch to light mode');
-    }
-}
+        // Redraw canvas immediately if a draw() function exists
+        if (typeof draw === 'function') {
+            draw();
+        }
+    };
+};
