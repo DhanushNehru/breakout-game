@@ -17,34 +17,35 @@ window.onload = function() {
         );
     }
 
-    if (!themeToggle) return; // Exit if toggle button is missing
+    // Only run theme logic if themeToggle exists
+    if (themeToggle) {
+        // Restore saved theme from localStorage
+        const savedTheme = localStorage.getItem('theme');
 
-    // Restore saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-        updateThemeToggleButton(true);
-    } else if (savedTheme === 'dark') {
-        document.body.classList.remove('light-mode');
-        updateThemeToggleButton(false);
-    } else {
-        // No preference saved — use system preference
-        const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-        document.body.classList.toggle('light-mode', prefersLight);
-        updateThemeToggleButton(prefersLight);
-    }
-
-    // Handle button clicks to toggle theme
-    themeToggle.onclick = function() {
-        const isLight = !document.body.classList.contains('light-mode');
-        document.body.classList.toggle('light-mode');
-        updateThemeToggleButton(isLight);
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-
-        // Redraw canvas immediately if a draw() function exists
-        if (typeof draw === 'function') {
-            draw();
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-mode');
+            updateThemeToggleButton(true);
+        } else if (savedTheme === 'dark') {
+            document.body.classList.remove('light-mode');
+            updateThemeToggleButton(false);
+        } else {
+            // No preference saved — use system preference
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            document.body.classList.toggle('light-mode', prefersLight);
+            updateThemeToggleButton(prefersLight);
         }
-    };
+
+        // Handle button clicks to toggle theme
+        themeToggle.onclick = function() {
+            const isLight = !document.body.classList.contains('light-mode');
+            document.body.classList.toggle('light-mode');
+            updateThemeToggleButton(isLight);
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+
+            // Redraw canvas immediately if a draw() function exists
+            if (typeof draw === 'function') {
+                draw();
+            }
+        };
+    }
 };
