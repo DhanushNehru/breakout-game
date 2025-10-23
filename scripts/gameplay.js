@@ -95,7 +95,7 @@ function collisionDetection() {
                         createBrickParticles(b.x, b.y, utilsColor(c, r, config.modeColor));
                         
                         // Update high score
-                        const isNewHighScore = updateScore(1);
+                        const isNewHighScore = updateScore(gameState.score);
                         if (isNewHighScore) {
                             createExplosion(b.x + config.brickWidth/2, b.y + config.brickHeight/2, '#FFD700');
                         }
