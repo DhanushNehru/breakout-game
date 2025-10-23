@@ -106,8 +106,12 @@ function showLevelUpMessage() {
     
     // Remove after animation
     setTimeout(() => {
-        document.body.removeChild(levelUpDiv);
-        document.head.removeChild(style);
+        if (levelUpDiv.parentNode) {
+            levelUpDiv.parentNode.removeChild(levelUpDiv);
+        }
+        if (style.parentNode) {
+            style.parentNode.removeChild(style);
+        }
     }, 2000);
 }
 
