@@ -129,12 +129,6 @@ function activatePowerUp(type) {
     }
 }
 
-// Increase ball speed for multi-ball power-up (actual multi-ball not implemented)
-function increaseMultiBallSpeed() {
-    // Temporarily increases the ball speed
-    gameState.speed *= 1.2;
-}
-
 // Get power-up color based on type
 function getPowerUpColor(type) {
     const colors = {
