@@ -38,6 +38,17 @@
             <label for="size-slider">Change size of the ball :</label>
             <input id="size-slider" type="range" min="3" max="30" />
           </div>
+          <div class="theme-container">
+            <label for="theme-selector">Theme:</label>
+            <select id="theme-selector">
+              <option value="classic">Classic</option>
+              <option value="neon">Neon</option>
+              <option value="retro">Retro</option>
+            </select>
+          </div>
+          <div class="sound-container">
+            <button id="soundToggleBtn">🔊 Sound On</button>
+          </div>
           <button id="pauseBtn">Pause</button>
         </section>
         <div class="alert success">
@@ -52,13 +63,18 @@
     </main>
     <footer>
       <span
-        >Copyright &copy; <span id="year"></span> Dhanush Nehru | The Breakout
+        >Copyright &copy; <span id="year"></span> The Breakout
         Game ❤</span
       >
     </footer>
     <!-- Load utility scripts first -->
     <script src="utils/utilsCopyright.js"></script>
     <script src="utils/utilsColor.js"></script>
+    <script src="utils/utilsPowerUps.js"></script>
+    <script src="utils/utilsParticles.js"></script>
+    <script src="utils/utilsHighScore.js"></script>
+    <script src="utils/utilsLevels.js"></script>
+    <script src="utils/utilsSound.js"></script>
     
     <!-- Load game modules in the correct order -->
     <script src="scripts/config.js"></script>

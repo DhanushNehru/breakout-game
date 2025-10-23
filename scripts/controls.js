@@ -64,8 +64,83 @@ function setupEventListeners() {
     document.addEventListener("keyup", keyUpHandler);
     document.addEventListener("mousemove", mouseMoveHandler);
     
+    // Touch support for mobile
+    document.addEventListener("touchstart", touchStartHandler);
+    document.addEventListener("touchmove", touchMoveHandler);
+    document.addEventListener("touchend", touchEndHandler);
+    
     elements.failureBtn.addEventListener('click', reloadPage);
     elements.successBtn.addEventListener('click', reloadPage);
     elements.pauseBtn.addEventListener("click", togglePause);
+    
+    // Initialize sound toggle button state
+    if (elements.soundToggleBtn) {
+        const isEnabled = isSoundEnabled();
+        elements.soundToggleBtn.textContent = isEnabled ? "🔊 Sound On" : "🔇 Sound Off";
+        elements.soundToggleBtn.classList.toggle("muted", !isEnabled);
+    }
+    
     listenersAttached = true;
+}
+
+// Touch handlers for mobile support
+function touchStartHandler(e) {
+    const touch = e.touches[0];
+    const rect = config.canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    if (
+        x >= 0 && x <= rect.width &&
+        y >= 0 && y <= rect.height
+    ) {
+        e.preventDefault();
+        if (x < rect.width / 2) {
+            controls.leftPressed = true;
+            controls.rightPressed = false;
+        } else {
+            controls.rightPressed = true;
+            controls.leftPressed = false;
+        }
+    }
+}
+
+function touchMoveHandler(e) {
+    const touch = e.touches[0];
+    const rect = config.canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    if (
+        x >= 0 && x <= rect.width &&
+        y >= 0 && y <= rect.height
+    ) {
+        e.preventDefault();
+        if (x < rect.width / 2) {
+            controls.leftPressed = true;
+            controls.rightPressed = false;
+        } else {
+            controls.rightPressed = true;
+            controls.leftPressed = false;
+        }
+    }
+}
+
+function touchEndHandler(e) {
+    // Use changedTouches if available, otherwise touches
+    const touch = (e.changedTouches && e.changedTouches[0]) || (e.touches && e.touches[0]);
+    if (touch) {
+        const rect = config.canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        if (
+            x >= 0 && x <= rect.width &&
+            y >= 0 && y <= rect.height
+        ) {
+            e.preventDefault();
+            controls.leftPressed = false;
+            controls.rightPressed = false;
+        }
+    } else {
+        controls.leftPressed = false;
+        controls.rightPressed = false;
+    }
 }
