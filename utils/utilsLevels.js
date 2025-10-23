@@ -3,16 +3,16 @@ const levelSystem = {
     currentLevel: 1,
     maxLevel: 10,
     levelData: {
-        1: { speed: 2, brickRows: 3, brickCols: 6, ballRadius: 25, paddleWidth: 100 },
-        2: { speed: 2.5, brickRows: 4, brickCols: 7, ballRadius: 22, paddleWidth: 90 },
-        3: { speed: 3, brickRows: 4, brickCols: 8, ballRadius: 20, paddleWidth: 85 },
-        4: { speed: 3.5, brickRows: 5, brickCols: 8, ballRadius: 18, paddleWidth: 80 },
-        5: { speed: 4, brickRows: 5, brickCols: 9, ballRadius: 16, paddleWidth: 75 },
-        6: { speed: 4.5, brickRows: 6, brickCols: 9, ballRadius: 14, paddleWidth: 70 },
-        7: { speed: 5, brickRows: 6, brickCols: 10, ballRadius: 12, paddleWidth: 65 },
-        8: { speed: 5.5, brickRows: 7, brickCols: 10, ballRadius: 10, paddleWidth: 60 },
-        9: { speed: 6, brickRows: 7, brickCols: 11, ballRadius: 8, paddleWidth: 55 },
-        10: { speed: 7, brickRows: 8, brickCols: 12, ballRadius: 6, paddleWidth: 50 }
+        1: { speed: 2, brickRows: 3, brickCols: 6, ballRadius: 15, paddleWidth: 100 },
+        2: { speed: 2.5, brickRows: 4, brickCols: 7, ballRadius: 14, paddleWidth: 90 },
+        3: { speed: 3, brickRows: 4, brickCols: 8, ballRadius: 13, paddleWidth: 85 },
+        4: { speed: 3.5, brickRows: 5, brickCols: 8, ballRadius: 12, paddleWidth: 80 },
+        5: { speed: 4, brickRows: 5, brickCols: 9, ballRadius: 11, paddleWidth: 75 },
+        6: { speed: 4.5, brickRows: 6, brickCols: 9, ballRadius: 10, paddleWidth: 70 },
+        7: { speed: 5, brickRows: 6, brickCols: 10, ballRadius: 9.5, paddleWidth: 65 },
+        8: { speed: 5.5, brickRows: 7, brickCols: 10, ballRadius: 9, paddleWidth: 60 },
+        9: { speed: 6, brickRows: 7, brickCols: 11, ballRadius: 8.5, paddleWidth: 55 },
+        10: { speed: 7, brickRows: 8, brickCols: 12, ballRadius: 8, paddleWidth: 50 }
     }
 };
 
