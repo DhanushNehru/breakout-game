@@ -85,37 +85,62 @@ function setupEventListeners() {
 
 // Touch handlers for mobile support
 function touchStartHandler(e) {
-    e.preventDefault();
     const touch = e.touches[0];
     const rect = config.canvas.getBoundingClientRect();
     const x = touch.clientX - rect.left;
-    
-    if (x < config.canvas.width / 2) {
-        controls.leftPressed = true;
-        controls.rightPressed = false;
-    } else {
-        controls.rightPressed = true;
-        controls.leftPressed = false;
+    const y = touch.clientY - rect.top;
+    if (
+        x >= 0 && x <= rect.width &&
+        y >= 0 && y <= rect.height
+    ) {
+        e.preventDefault();
+        if (x < rect.width / 2) {
+            controls.leftPressed = true;
+            controls.rightPressed = false;
+        } else {
+            controls.rightPressed = true;
+            controls.leftPressed = false;
+        }
     }
 }
 
 function touchMoveHandler(e) {
-    e.preventDefault();
     const touch = e.touches[0];
     const rect = config.canvas.getBoundingClientRect();
     const x = touch.clientX - rect.left;
-    
-    if (x < config.canvas.width / 2) {
-        controls.leftPressed = true;
-        controls.rightPressed = false;
-    } else {
-        controls.rightPressed = true;
-        controls.leftPressed = false;
+    const y = touch.clientY - rect.top;
+    if (
+        x >= 0 && x <= rect.width &&
+        y >= 0 && y <= rect.height
+    ) {
+        e.preventDefault();
+        if (x < rect.width / 2) {
+            controls.leftPressed = true;
+            controls.rightPressed = false;
+        } else {
+            controls.rightPressed = true;
+            controls.leftPressed = false;
+        }
     }
 }
 
 function touchEndHandler(e) {
-    e.preventDefault();
-    controls.leftPressed = false;
-    controls.rightPressed = false;
+    // Use changedTouches if available, otherwise touches
+    const touch = (e.changedTouches && e.changedTouches[0]) || (e.touches && e.touches[0]);
+    if (touch) {
+        const rect = config.canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        if (
+            x >= 0 && x <= rect.width &&
+            y >= 0 && y <= rect.height
+        ) {
+            e.preventDefault();
+            controls.leftPressed = false;
+            controls.rightPressed = false;
+        }
+    } else {
+        controls.leftPressed = false;
+        controls.rightPressed = false;
+    }
 }
