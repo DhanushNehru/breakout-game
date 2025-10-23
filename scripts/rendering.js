@@ -50,7 +50,7 @@ function drawLives(lives) {
     ctx.fillStyle = document.body.classList.contains('light-mode') ? "#222" : "#fff";
     ctx.textAlign = 'right';
     ctx.fillText("Lives: " + lives, config.canvas.width - 8, 25);
-    ctx.textAlign = 'start'; 
+    ctx.textAlign = 'left'; 
 }
 
 function clearCanvas() {
