@@ -18,14 +18,25 @@ const levelSystem = {
 
 // Check if level should advance
 function checkLevelAdvance() {
-    const totalBricks = config.brickRowCount * config.brickColumnCount;
-    if (gameState.score >= totalBricks && levelSystem.currentLevel < levelSystem.maxLevel) {
+    if (areAllBricksDestroyed() && levelSystem.currentLevel < levelSystem.maxLevel) {
         advanceLevel();
         return true;
     }
     return false;
 }
 
+// Helper function to check if all bricks are destroyed
+function areAllBricksDestroyed() {
+    // Assumes bricks is a 2D array: bricks[row][col] with .status property (1 = active, 0 = destroyed)
+    for (let row = 0; row < bricks.length; row++) {
+        for (let col = 0; col < bricks[row].length; col++) {
+            if (bricks[row][col].status === 1) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
 // Advance to next level
 function advanceLevel() {
     levelSystem.currentLevel++;
