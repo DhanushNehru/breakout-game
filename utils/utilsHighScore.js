@@ -9,7 +9,7 @@ const highScore = {
 function loadHighScore() {
     const saved = localStorage.getItem(highScore.key);
     if (saved) {
-        highScore.best = parseInt(saved);
+        highScore.best = parseInt(saved, 10);
     }
     return highScore.best;
 }
