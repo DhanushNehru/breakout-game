@@ -39,15 +39,19 @@ function drawBricks(bricks) {
 }
 
 function drawScore(score) {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "white";
-    ctx.fillText("Score: "+score, 8, 20);
+    ctx.font = "20px Roboto";
+    ctx.fillStyle = document.body.classList.contains('light-mode') ? "#222" : "#fff";
+    ctx.textAlign = 'left';
+    ctx.fillText("Score: " + score, 8, 25);
 }
 
 function drawLives(lives) {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "white";
-    ctx.fillText("Lives: "+lives, config.canvas.width-65, 20);
+    ctx.save();
+    ctx.font = "20px Roboto";
+    ctx.fillStyle = document.body.classList.contains('light-mode') ? "#222" : "#fff";
+    ctx.textAlign = 'right';
+    ctx.fillText("Lives: " + lives, config.canvas.width - 8, 25);
+    ctx.restore();
 }
 
 function clearCanvas() {
