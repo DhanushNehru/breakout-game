@@ -1,240 +1,137 @@
+/* ===============================
+   Breakout Game - Modern CSS Theme
+   =============================== */
+
 * {
-	padding: 0;
-	margin: 0;
-	font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-body{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
-	background-color: rgb(67, 66, 66);
-	color: white;
-	height: 100vh;
+body {
+  background: radial-gradient(circle at top, #0a0f1f, #000);
+  color: #fff;
+  text-align: center;
+  overflow-x: hidden;
+  cursor: url('https://cur.cursors-4u.net/games/gam-3/gam225.cur'), auto;
 }
 
-body.light-mode {
-    background-color: #f4f4f4;
-    color: #222;
-}
-
+/* Header / Navbar */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
-    width: 100%;
-    background-color: #0b0404;
-    padding: 0 30px;
+  background: rgba(20, 20, 30, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 15px 0;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  border-bottom: 2px solid #00ffee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-body.light-mode header {
-    background-color: #eaeaea;
+header h1 {
+  font-size: 1.8rem;
+  color: #00ffee;
+  letter-spacing: 1px;
 }
 
-main{
-	width: 95%;
+/* Game Canvas */
+#gameCanvas {
+  background: linear-gradient(180deg, #10142a, #060b18);
+  border: 2px solid #00ffee;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  display: block;
+  margin: 60px auto;
 }
 
-.game-container{
-	display: flex;
-	flex-direction: row;
-	align-items: flex-start;
-	justify-content: space-between;
+/* Buttons */
+button {
+  background: #00ffee;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 10px;
 }
 
-.game-container section{
-	width: 30%;
+button:hover {
+  background: #0099cc;
+  color: #fff;
+  box-shadow: 0 0 10px #00ffee;
 }
 
-#myCanvas {
-	background: rgb(55, 54, 54);
-	display: block;
-	margin: 10px;
+/* Info Text */
+#info {
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: 15px;
 }
 
-body.light-mode #myCanvas {
-    background: #fff;
+#scoreboard {
+  font-size: 1.2rem;
+  margin: 20px;
+  color: #00ffee;
+  font-weight: 600;
 }
 
-.alert {
-	padding: 15px;
-	color: white;
-	opacity: 1;
-	transition: opacity 0.6s;
-	position: absolute;
-	left:0;
-	right: 0;
-	top: -40%;
-	text-align: center;
-	margin: 0 auto;
-	max-width: 400px;
-	border-radius: 25px;
+/* Game Over / Win Modals */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  z-index: 200;
 }
 
-.alert.failure, .alert.failure strong {
-	background-color: #F86F03;
+.modal.active {
+  display: flex;
+  animation: fadeIn 0.5s ease;
 }
 
-body.light-mode .alert.failure,
-body.light-mode .alert.failure strong {
-    background-color: #ffcdd2;
-    color: #222;
+.modal h2 {
+  font-size: 2rem;
+  color: #00ffee;
 }
 
-.alert.success, .alert.success strong {
-	background-color: #7A9D54;
-
+.modal p {
+  margin: 15px 0;
+  color: #ccc;
 }
 
-body.light-mode .alert.success,
-body.light-mode .alert.success strong {
-    background-color: #c8e6c9;
-    color: #222;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.close {
-	border-radius: 10px;
-	display: block;
-	margin-left: 10px;
-	background-color: transparent;
-	border: thin solid white;
-	color: white;
-	padding: 5px 15px;
-	font-size: 16px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 10px;
-	cursor: pointer;
-	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-#successBtn:hover {
-	background-color: white;
-	color: #557A46;
-}
-
-#failureBtn:hover {
-	background-color: white;
-	color: #F86F03;
-}
-
-
-.game-info{
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	background-color: rgb(55, 54, 54, 0.5);
-	border: 2px solid black;
-	border-radius: 5px;
-	padding: 20px;
-	--text-color: white;
-}
-
-.game-info * {
-    color: var(--text-color);
-}
-
-body.light-mode .game-info {
-    --text-color: #222;
-}
-.game-option{
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	background-color: rgb(55, 54, 54, 0.5);
-	border: 2px solid black;
-	border-radius: 5px;
-	padding: 20px;
-}
-
-#size-container, .speed-container{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin-top: 20px;
-}
-
-.heading{
-	font-size:30px;
-	font-weight: bold;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-#pauseBtn {
-	background-color: rgb(255, 253, 122); 
-	color: black; 
-	border: 2px solid #04AA6D;
-	border-radius: 7%;
-	border: none;
-	padding: 8px 16px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 12px;
-	margin: 4px 2px;
-	transition-duration: 0.4s;
-	cursor: pointer;
-}
-
-#pauseBtn:hover {
-	background-color: #008CBA;
-	color: white;
-}
-
+/* Footer */
 footer {
-	background-color: #121315;
-	font-size: 16px;
-	width: 100%;
-	height: 5vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  color: #777;
+  font-size: 0.9rem;
+  padding: 15px 0;
+  background: rgba(15, 15, 30, 0.7);
+  border-top: 1px solid #00ffee33;
+  margin-top: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #gameCanvas {
+    width: 90%;
+    height: auto;
   }
-
-  .copyright p {
-	font-size: 0.9em;
-	text-align: right;
+  header h1 {
+    font-size: 1.5rem;
   }
-
-  @media screen and (max-width: 850px) {
-	.row.primary {
-	  grid-template-columns: 1fr;
-	}
-  
-  }
-
-  #themeToggle {
-    font-size: 20px;
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    padding: 8px 16px;
-    border-radius: 8px;
-    transition: background 0.2s;
-}
-
-#themeToggle:hover {
-    background: rgba(255,255,255,0.1);
-}
-
-body.light-mode #themeToggle:hover {
-    background: rgba(0,0,0,0.06);
-}
-
-#themeToggle:focus-visible {
-    background: rgba(255,255,255,0.1);
-    outline: none;
-}
-
-body.light-mode #themeToggle:focus-visible {
-    background: rgba(0,0,0,0.06);
-    outline: none;
 }

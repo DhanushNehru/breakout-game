@@ -2,72 +2,93 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Breakout Game</title>
+    <title>🎮 Breakout Game</title>
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header>
-      <h1 class="heading">The Breakout Game</h1>
-      <button id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">🌙</button>
+      <h1 class="heading">🎮 The Breakout Game</h1>
+      <button
+        id="themeToggle"
+        type="button"
+        aria-label="Switch theme"
+        aria-pressed="false"
+      >
+        🌙
+      </button>
     </header>
+
     <main>
       <article class="game-container">
+        <!-- Game Badge -->
+        <div class="badge">🔥 Breakout Challenge 🔥</div>
+
         <section class="game-info">
-          <div>
-            <h2>Breakout Game</h2>
-            <p>
-              This game is simple and easy to play and also beginner friendly.
-              So why are you waiting? Start playing the game and enjoy to the
-              fullest!
-            </p>
-          </div>
+          <h2>Welcome to Breakout Game</h2>
+          <p>
+            Smash the bricks, test your reflexes, and enjoy the fun! 🚀 <br />
+            Use your paddle to keep the ball in play and clear all the blocks to win.
+          </p>
         </section>
+
+        <!-- Game Canvas -->
         <canvas id="myCanvas" width="600" height="600"></canvas>
+
+        <!-- Game Options -->
         <section class="game-option">
-          <h3>Game Options :</h3>
+          <h3>🎮 Game Controls</h3>
+
           <div class="speed-container">
-            <label for="speed-slider">Change speed of the ball :</label>
+            <label for="speed-slider">Ball Speed:</label>
             <input id="speed-slider" type="range" min="1" max="5" value="2.5" />
           </div>
+
           <div id="size-container">
-            <label for="size-slider">Change size of the ball :</label>
-            <input id="size-slider" type="range" min="3" max="30" />
+            <label for="size-slider">Ball Size:</label>
+            <input id="size-slider" type="range" min="3" max="30" value="10" />
           </div>
-          <button id="pauseBtn">Pause</button>
+
+          <div class="btn-group">
+            <button id="pauseBtn">⏸️ Pause</button>
+            <button id="restartBtn">🔄 Restart</button>
+          </div>
         </section>
+
+        <!-- Alerts -->
         <div class="alert success">
-          <strong>YOU WIN, CONGRATULATIONS!</strong>
-          <button id="successBtn" class="close">Restart the Game</button>
+          <strong>🎉 YOU WIN! GREAT JOB!</strong>
+          <button id="successBtn" class="close">Restart Game</button>
         </div>
+
         <div class="alert failure">
-          <strong>GAME OVER!</strong>
-          <button id="failureBtn" class="close">Restart the Game</button>
+          <strong>💀 GAME OVER! TRY AGAIN!</strong>
+          <button id="failureBtn" class="close">Restart Game</button>
         </div>
       </article>
     </main>
+
     <footer>
-      <span
-        >Copyright &copy; <span id="year"></span> Dhanush Nehru | The Breakout
-        Game ❤</span
-      >
+      <span>© <span id="year"></span> Dhanush Nehru | Breakout Game ❤️</span>
     </footer>
-    <!-- Load utility scripts first -->
+
+    <!-- Scripts -->
     <script src="utils/utilsCopyright.js"></script>
     <script src="utils/utilsColor.js"></script>
-    
-    <!-- Load game modules in the correct order -->
+
     <script src="scripts/config.js"></script>
     <script src="scripts/rendering.js"></script>
     <script src="scripts/controls.js"></script>
     <script src="scripts/gameplay.js"></script>
-    
-    <!-- Load main script last -->
+
     <script src="script.js"></script>
   </body>
 </html>
