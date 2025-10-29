@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>🎮 Breakout Game</title>
+    <title>Breakout Game — Hacktoberfest Edition</title>
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,14 +11,13 @@
       rel="stylesheet"
     />
   </head>
-
   <body>
     <header>
-      <h1 class="heading">🎮 The Breakout Game</h1>
+      <h1 class="heading">🎃 The Breakout Game </h1>
       <button
         id="themeToggle"
         type="button"
-        aria-label="Switch theme"
+        aria-label="Switch to dark mode"
         aria-pressed="false"
       >
         🌙
@@ -29,14 +26,14 @@
 
     <main>
       <article class="game-container">
-        <!-- Game Badge -->
-        <div class="badge">🔥 Breakout Challenge 🔥</div>
+        
 
         <section class="game-info">
-          <h2>Welcome to Breakout Game</h2>
+          <h2>Breakout Game</h2>
           <p>
-            Smash the bricks, test your reflexes, and enjoy the fun! 🚀 <br />
-            Use your paddle to keep the ball in play and clear all the blocks to win.
+            Celebrate <strong>October</strong> by playing this fun,
+            beginner-friendly game! Smash all the bricks, boost your speed, and
+            have a blast contributing to open source fun. 💻
           </p>
         </section>
 
@@ -45,27 +42,30 @@
 
         <!-- Game Options -->
         <section class="game-option">
-          <h3>🎮 Game Controls</h3>
+          <h3>🎮 Game Options :</h3>
 
           <div class="speed-container">
-            <label for="speed-slider">Ball Speed:</label>
-            <input id="speed-slider" type="range" min="1" max="5" value="2.5" />
+            <label for="speed-slider">Adjust ball speed:</label>
+            <input
+              id="speed-slider"
+              type="range"
+              min="1"
+              max="5"
+              value="2.5"
+            />
           </div>
 
           <div id="size-container">
-            <label for="size-slider">Ball Size:</label>
-            <input id="size-slider" type="range" min="3" max="30" value="10" />
+            <label for="size-slider">Adjust ball size:</label>
+            <input id="size-slider" type="range" min="3" max="30" />
           </div>
 
-          <div class="btn-group">
-            <button id="pauseBtn">⏸️ Pause</button>
-            <button id="restartBtn">🔄 Restart</button>
-          </div>
+          <button id="pauseBtn">⏸️ Pause</button>
         </section>
 
         <!-- Alerts -->
         <div class="alert success">
-          <strong>🎉 YOU WIN! GREAT JOB!</strong>
+          <strong>🎉 YOU WIN! HAPPY HACKTOBERFEST!</strong>
           <button id="successBtn" class="close">Restart Game</button>
         </div>
 
@@ -77,18 +77,22 @@
     </main>
 
     <footer>
-      <span>© <span id="year"></span> Dhanush Nehru | Breakout Game ❤️</span>
+      <span>
+        © <span id="year"></span> Dhanush Nehru | The Breakout Game ❤
+      </span>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Utility Scripts -->
     <script src="utils/utilsCopyright.js"></script>
     <script src="utils/utilsColor.js"></script>
 
+    <!-- Game Modules -->
     <script src="scripts/config.js"></script>
     <script src="scripts/rendering.js"></script>
     <script src="scripts/controls.js"></script>
     <script src="scripts/gameplay.js"></script>
 
+    <!-- Main Script -->
     <script src="script.js"></script>
   </body>
 </html>
